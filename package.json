@@ -1,0 +1,30 @@
+{
+  "name": "react-apollo-graphql-jwt-starter",
+  "version": "1.0.0",
+  "description": "Apollo-graphql backend api with mongo, jwt, react, redux",
+  "scripts": {
+    "start": "node server.js",
+    "start-api": "nodemon api/index.js --watch api --exec babel-node",
+    "prebuild": "rimraf dist",
+    "build": "cross-env NODE_ENV=production webpack -p --optimize-dedupe --config webpack.prod.config.js",
+    "eslint": "eslint ."
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "graphql",
+    "apollo",
+    "jwt",
+    "webpack"
+  ],
+  "author": "will.chen",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-client": "^1.0.4",
+    "bcrypt-nodejs": "^0.0.3",
+    "body-parser": "^1.17.1"
+  },
+  "devDependencies": {
+
+  }
+}
