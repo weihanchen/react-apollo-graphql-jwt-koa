@@ -9,6 +9,7 @@
     "dev": "nodemon ./src/server.js --exec babel-node --presets es2015,stage-3"
   },
   "dependencies": {
+    "bcrypt-nodejs": "^0.0.3",
     "graphql": "^0.9.3",
     "graphql-server-koa": "^0.7.2",
     "graphql-subscriptions": "^0.3.1",
@@ -23,6 +24,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
     "babel-register": "^6.24.1",
+    "eslint": "^3.19.0",
     "nodemon": "^1.11.0"
   }
 }
