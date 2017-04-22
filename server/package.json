@@ -1,0 +1,28 @@
+{
+  "name": "user-authentication-server",
+  "version": "1.0.0",
+  "description": "Backend api with koa, mongo, jwt, apollo, graphql",
+  "author": "weihanchen",
+  "scripts": {
+    "build": "babel src -d dist",
+    "start": "node dist/server.js",
+    "dev": "nodemon ./src/server.js --exec babel-node --presets es2015,stage-3"
+  },
+  "dependencies": {
+    "graphql": "^0.9.3",
+    "graphql-server-koa": "^0.7.2",
+    "graphql-subscriptions": "^0.3.1",
+    "jsonwebtoken": "^7.3.0",
+    "kcors": "^1.3.2",
+    "koa": "^2.2.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.1.1",
+    "mongoose": "^4.9.5"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "nodemon": "^1.11.0"
+  }
+}
