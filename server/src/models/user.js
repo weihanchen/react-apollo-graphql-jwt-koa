@@ -23,8 +23,16 @@ const userSchema = new Schema({
 });
 
 
-
-userSchema.methods.generateHash = (password) => bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
+userSchema.pre('save', function (next) {
+    const user = this;
+    const hash = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
+    user.password = hash;
+    if (user.isModified('password') || this.isNew) {
+        const hash = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
+        user.password = hash;
+    }
+    next();
+});
 
 userSchema.methods.validPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
