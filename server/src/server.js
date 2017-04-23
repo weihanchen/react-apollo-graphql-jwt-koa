@@ -5,13 +5,12 @@ import middleware from './middleware';
 import {authInitialize} from './auth';
 import routes from './routes';
 mongoose.Promise = global.Promise;
-console.log(config.mongo.uri)
 mongoose.connect(config.mongo.uri);
 const server = new koa(),
    PORT = process.env.PORT || 3000,
-   errorHandler = (err, ctx) => {
-       ctx.status = err.status || 500;
-       ctx.body = err;
+   errorHandler = (ctx) => {
+       ctx.status = ctx.error.status || 500;
+       ctx.body = ctx.error;
    };
 
 server.use(middleware());

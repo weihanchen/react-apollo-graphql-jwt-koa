@@ -1,9 +1,8 @@
 'use strict';
 
-import User from '../../models';
+import {User} from '../../models';
 import {auth} from '../../auth';
 import errorBuilder from '../../services/error';
-
 
 const me = async (ctx, next) => {
    try {
@@ -25,7 +24,8 @@ const register = async (ctx, next) => {
    //TODO: validtion body
    const user = await User.findOne({ username });
    if (user) {
-      next(errorBuilder.badRequest('username already exist.'));
+      ctx.error = errorBuilder.badRequest('username already exist.');
+      await next();
    } else {
       const user = new User({
          username,
