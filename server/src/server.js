@@ -1,39 +1,22 @@
 import koa from 'koa';
-import koaRouter from 'koa-router';
-import cors from 'kcors';
-import koaBody from 'koa-bodyparser';
-import {graphqlKoa} from 'graphql-server-koa';
-import {SubscriptionServer} from 'subscriptions-transport-ws';
-
-import {subscriptionManager} from  './data/subscriptions';
-import schema from './data/schema';
-import './db';
-import {validateToken}from './auth';
-
+import mongoose from 'mongoose';
+import config from '../config';
+import middleware from './middleware';
+import {authInitialize} from './auth';
+import routes from './routes';
+mongoose.Promise = global.Promise;
+console.log(config.mongo.uri)
+mongoose.connect(config.mongo.uri);
 const server = new koa(),
-   router = new koaRouter(),
-   PORT = process.env.PORT || 3000
+   PORT = process.env.PORT || 3000,
+   errorHandler = (err, ctx) => {
+       ctx.status = err.status || 500;
+       ctx.body = err;
+   };
 
-server.use(cors());
-server.use(koaBody());
-
-router.post('/graphql', graphqlKoa({schema: schema}));
-
-server.use(router.routes());
-server.use(router.allowedMethods());
+server.use(middleware());
+server.use(authInitialize());
+server.use(routes());
+server.use(errorHandler);
 
 server.listen(PORT, () => console.log('Server is running on', 'localhost:' + PORT));
-
-const subscriptionsServer = new SubscriptionServer({
-        subscriptionManager: subscriptionManager,
-        onConnect: async (connectionParams) => {
-            if (connectionParams.authToken) {
-                return await validateToken(connectionParams.authToken)
-            }
-            throw new Error('Missing auth token!')
-        }
-    }, {
-        path: '/subscriptions',
-        server: server
-    }
-)
