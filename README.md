@@ -18,6 +18,11 @@ Refactor from [user-authentication-nodejs](https://github.com/weihanchen/user-au
 - [Graphql](http://graphql.org/learn/)
 - [Next](https://github.com/zeit/next.js/)
 
+## System Environment Variables
+- `PORT`
+- `SECRET_KEY`
+- `MONGO_CONNECTION`
+
 ## Quick Start
 ```
 git clone https://github.com/weihanchen/react-apollo-graphql-jwt-koa.git
@@ -30,4 +35,8 @@ $ cd ../client
 $ npm install
 ```
 
-Pending...
+## Step
+### General config
+- edit server/config/database.js or system variable for MONGO_CONNECTION、SECRET_KEY - database connection and jwt secret
+
+### Pending
