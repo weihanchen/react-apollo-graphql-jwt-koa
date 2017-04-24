@@ -1,9 +1,13 @@
 'use strict';
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt-nodejs';
-
+import {
+   GraphQLObjectType,
+   GraphQLNonNull,
+   GraphQLString,
+   GraphQLID
+} from 'graphql';
 const Schema = mongoose.Schema;
-
 // set up a mongoose model
 const userSchema = new Schema({
     username: {
@@ -38,4 +42,19 @@ userSchema.methods.validPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
 };
 
-module.exports = mongoose.model('User', userSchema);
+export const UserModel = mongoose.model('User', userSchema);
+
+export const UserType = new GraphQLObjectType({
+   name: "user",
+   fields: {
+      _id: {
+         type: new GraphQLNonNull(GraphQLID)
+      },
+      username:{
+         type: GraphQLString
+      },
+      displayName: {
+         type: GraphQLString
+      }
+   }
+});

@@ -2,14 +2,14 @@
 import moment from 'moment';
 import jwt from 'jsonwebtoken';
 import config from '../../../config';
-import { User } from '../../models';
+import { UserModel } from '../../data/user/models';
 import { auth } from '../../auth';
 import errorBuilder from '../../services/error';
 
 const login = async (ctx, next) => {
    try {
       const { username, password } = ctx.request.body;
-      const user = await User.findOne({ username });
+      const user = await UserModel.findOne({ username });
       if (!user) {
          ctx.error = errorBuilder.badRequest('User not found.');
          await next();
@@ -35,7 +35,7 @@ const login = async (ctx, next) => {
 const me = async (ctx, next) => {
    try {
       const request = ctx.request
-      const user = await User.findById(req.user.uid);
+      const user = await UserModel.findById(req.user.uid);
       const respbody = {
          uid: req.user.id,
          username: user.username,
@@ -51,12 +51,12 @@ const me = async (ctx, next) => {
 const register = async (ctx, next) => {
    const { username, displayName, password } = ctx.request.body;
    //TODO: validtion body
-   const user = await User.findOne({ username });
+   const user = await UserModel.findOne({ username });
    if (user) {
       ctx.error = errorBuilder.badRequest('username already exist.');
       await next();
    } else {
-      const user = new User({
+      const user = new UserModel({
          username,
          displayName,
          password

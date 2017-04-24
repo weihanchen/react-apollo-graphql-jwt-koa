@@ -4,7 +4,7 @@ import compose from 'koa-compose';
 import Router from 'koa-router';
 import importDir from 'import-dir';
 
-const routerConfigs = [{ folder: 'api', prefix: '/api' }];
+const routerConfigs = [{ folder: 'base', prefix: '' }, { folder: 'api', prefix: '/api' }];
 
 export default function routes() {
   const composed = routerConfigs.reduce((prev, curr) => {
