@@ -11,16 +11,16 @@ const authInitialize = () => compose([
    passport.initialize(),
 ]);
 
-const auth = () => passport.authenticate("jwt", {
+const authJwt = () => passport.authenticate("jwt", {
    session: false
 });
 
 export default {
    authInitialize,
-   auth
+   authJwt
 };
 
 export {
    authInitialize,
-   auth
+   authJwt
 };

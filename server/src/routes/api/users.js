@@ -3,7 +3,7 @@ import moment from 'moment';
 import jwt from 'jsonwebtoken';
 import config from '../../../config';
 import { User } from '../../models';
-import { auth } from '../../auth';
+import { authJwt } from '../../auth';
 import errorBuilder from '../../services/error';
 
 const login = async (ctx, next) => {
@@ -15,15 +15,20 @@ const login = async (ctx, next) => {
          await next();
       } else {
          const isValid = user.validPassword(password);
-         const expires = moment().add(1, 'days').valueOf();
-         const token = jwt.sign({
-            iss: user.id,
-            exp: expires
-         }, config.jwt.secret);
-         ctx.body = {
-            success: true,
-            uid: user.id,
-            token: 'JWT ' + token
+         if (isValid) {
+            const expires = moment().add(1, 'days').valueOf();
+            const token = jwt.sign({
+               iss: user.id,
+               exp: expires
+            }, config.jwt.secret);
+            ctx.body = {
+               success: true,
+               uid: user.id,
+               token: 'JWT ' + token
+            }
+         } else {
+            ctx.error = errorBuilder.badRequest('Wrong password.');
+            await next();
          }
       }
    } catch (error) {
@@ -34,8 +39,8 @@ const login = async (ctx, next) => {
 
 const me = async (ctx, next) => {
    try {
-      const request = ctx.request
-      const user = await User.findById(req.user.uid);
+      const request = ctx.request;
+      const user = await User.findById(request.user.uid);
       const respbody = {
          uid: req.user.id,
          username: user.username,
@@ -70,7 +75,7 @@ const register = async (ctx, next) => {
 };
 
 export default (router) => {
-   router.get('/users/me', auth(), me);
+   // router.get('/users/me', authJwt(), me);
    router.post('/users', register);
    router.post('/users/login', login);
 };

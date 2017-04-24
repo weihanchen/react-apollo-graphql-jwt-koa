@@ -25,10 +25,8 @@ const userSchema = new Schema({
 
 userSchema.pre('save', function (next) {
     const user = this;
-    const hash = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
-    user.password = hash;
     if (user.isModified('password') || this.isNew) {
-        const hash = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
+        const hash = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10));
         user.password = hash;
     }
     next();
