@@ -9,8 +9,8 @@ mongoose.connect(config.mongo.uri);
 const server = new koa(),
    PORT = process.env.PORT || 3000,
    errorHandler = (ctx) => {
-       ctx.status = ctx.error.status || 500;
-       ctx.body = ctx.error;
+       ctx.status = ctx.error && ctx.error.status || ctx.response.status  || 500;
+       ctx.body = ctx.error || ctx.response.message;
    };
 
 server.use(middleware());
