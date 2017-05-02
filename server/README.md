@@ -12,6 +12,10 @@ Tool for test your queries: `localhost:3000/graphiql`
 
 ## Documentation
 
+### Step
+>1. post `api/users` - create new account
+>2. post `api/users/login` - login and get jwt token then frontend can store this token to use other api
+
 ### Query user by id
 ```json
 {
