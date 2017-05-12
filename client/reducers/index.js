@@ -6,9 +6,12 @@ import login from './login'
 import logout from './logout'
 import user from './user'
 
-export default combineReducers({
-	authentication,
-	login,
-	logout,
-	user
-})
+export default (apolloClient) => {
+	return combineReducers({
+		authentication,
+		login,
+		logout,
+		user,
+		apollo: apolloClient.reducer()
+	})
+}
