@@ -15,6 +15,9 @@ import routes from './routes.js';
 injectTapEventPlugin();
 const networkInterface = createNetworkInterface({ uri: GRAPHQL_ENDPOINT });
 const initialState = window.__INITIAL_STATE__;
+/* Stylesheets*/
+import 'bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+import './stylesheets/style.scss';
 
 networkInterface.use([{
    applyMiddleware(req, next) {

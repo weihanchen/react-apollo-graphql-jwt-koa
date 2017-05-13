@@ -28,7 +28,7 @@ module.exports = {
             loader: 'style-loader!css-loader'
         }, {
             test: /\.scss$/,
-            loaders: ["style", "css", "sass"]
+            loaders: ["style-loader", "css-loader", "sass-loader"]
         }, {
             test: /\.(png|jpg)$/,
             loader: 'file-loader'
@@ -43,7 +43,7 @@ module.exports = {
             loader: "url-loader?limit=10000&mimetype=application/octet-stream"
         }, {
             test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-            loader: "file"
+            loader: "file-loader"
         }, {
             test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
             loader: "url-loader?limit=10000&mimetype=image/svg+xml"
