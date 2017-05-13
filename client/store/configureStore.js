@@ -4,6 +4,7 @@ import {
    compose 
 } from 'redux';
 import rootReducers from '../reducers';
+import rootEpics from '../epics';
 
 export default function configureStore(initialState = {}, apolloClient) {
     const store = createStore(
