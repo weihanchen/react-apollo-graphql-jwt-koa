@@ -1,20 +1,20 @@
 import React, {
 	Component,
-	PropTypes
-} from 'react'
+} from 'react';
+import PropTypes from 'prop-types';
 import {
 	connect
-} from 'react-redux'
+} from 'react-redux';
 import {
 	bindActionCreators
-} from 'redux'
+} from 'redux';
 import {
 	hashHistory
-} from 'react-router'
+} from 'react-router';
 import LinearProgress from 'material-ui/LinearProgress';
 import {
 	requestAuthentication
-} from '../actions'
+} from '../actions';
 
 class AuthContainer extends Component {
 

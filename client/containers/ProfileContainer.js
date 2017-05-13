@@ -1,19 +1,19 @@
 import React, {
 	Component,
-	PropTypes
-} from 'react'
+} from 'react';
+import PropTypes from 'prop-types';
 import {
 	Link
-} from 'react-router'
+} from 'react-router';
 import {
 	connect
-} from 'react-redux'
+} from 'react-redux';
 import {
 	bindActionCreators
-} from 'redux'
+} from 'redux';
 import {
 	hashHistory
-} from 'react-router'
+} from 'react-router';
 import CircularProgress from 'material-ui/CircularProgress';
 import {
 	requestCurrentUser,
@@ -21,9 +21,9 @@ import {
 	requestUpdateUser,
 	resetLogoutStatus,
 	resetUserStatus
-} from '../actions'
-import ErrorContent from '../components/ErrorContent'
-import Profile from '../components/Profile'
+} from '../actions';
+import ErrorContent from '../components/ErrorContent';
+import Profile from '../components/Profile';
 
 
 class ProfileContainer extends Component {

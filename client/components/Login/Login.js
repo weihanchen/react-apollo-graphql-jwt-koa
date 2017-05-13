@@ -1,10 +1,10 @@
 import React, {
-	Component,
-	PropTypes
-} from 'react'
+	Component
+} from 'react';
+import PropTypes from 'prop-types';
 import {
 	Link
-} from 'react-router'
+} from 'react-router-dom';
 import {
 	Card,
 	CardActions,
@@ -12,10 +12,10 @@ import {
 	CardMedia,
 	CardTitle,
 	CardText
-} from 'material-ui/Card'
-import * as Colors from 'material-ui/styles/colors'
-import TextField from 'material-ui/TextField'
-import RaisedButton from 'material-ui/RaisedButton'
+} from 'material-ui/Card';
+import * as Colors from 'material-ui/styles/colors';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 
 
 

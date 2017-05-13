@@ -1,24 +1,24 @@
 import React, {
-	Component,
-	PropTypes
-} from 'react'
+	Component
+} from 'react';
+import PropTypes from 'prop-types';
 import {
 	connect
-} from 'react-redux'
+} from 'react-redux';
 import {
 	hashHistory
-} from 'react-router'
+} from 'react-router';
 import {
 	bindActionCreators
-} from 'redux'
+} from 'redux';
 import {
 	requestLogin,
 	resetLoginStatus
-} from '../actions'
+} from '../actions';
 import CircularProgress from 'material-ui/CircularProgress';
 //components
-import ErrorContent from '../components/ErrorContent'
-import Login from '../components/Login'
+import ErrorContent from '../components/ErrorContent';
+import Login from '../components/Login';
 
 class LoginContainer extends Component {
 

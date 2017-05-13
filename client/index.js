@@ -3,17 +3,18 @@ import {
    render
 } from 'react-dom';
 import {
-   Router,
-   browserHistory,
-   hashHistory
-} from 'react-router';
+  HashRouter as Router
+} from 'react-router-dom';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import ApolloClient, { createNetworkInterface } from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
 import { GRAPHQL_ENDPOINT } from './config';
 import configureStore from './store/configureStore';
 import routes from './routes.js';
+injectTapEventPlugin();
 const networkInterface = createNetworkInterface({ uri: GRAPHQL_ENDPOINT });
+const initialState = window.__INITIAL_STATE__;
 
 networkInterface.use([{
    applyMiddleware(req, next) {
@@ -36,7 +37,9 @@ const store = configureStore(initialState, client);
 
 render(
    <ApolloProvider client={client} store={store}>
-      <Router routes={routes} history={hashHistory} />
+      <Router>
+        {routes}
+      </Router>
    </ApolloProvider>,
 	document.getElementById('root')
 )

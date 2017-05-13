@@ -1,6 +1,7 @@
 import {
    createStore,
-   applyMiddleware
+   applyMiddleware,
+   compose 
 } from 'redux';
 import rootReducers from '../reducers';
 

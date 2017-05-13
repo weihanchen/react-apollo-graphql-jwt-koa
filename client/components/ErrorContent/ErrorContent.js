@@ -1,7 +1,7 @@
 import React, {
-	Component,
-	PropTypes
-} from 'react'
+	Component
+} from 'react';
+import PropTypes from 'prop-types';
 import {
 	hashHistory
 } from 'react-router'

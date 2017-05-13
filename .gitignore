@@ -3,4 +3,5 @@ server/coverage
 server/npm-debug.log
 server/yarn.lock
 client/node_modules
+client/yarn.lock
 npm-debug.log

@@ -1,26 +1,26 @@
 import React, {
-	Component,
-	PropTypes
-} from 'react'
+	Component
+} from 'react';
+import PropTypes from 'prop-types';
 import {
 	connect
-} from 'react-redux'
+} from 'react-redux';
 import {
 	bindActionCreators
-} from 'redux'
+} from 'redux';
 import {
 	hashHistory
-} from 'react-router'
+} from 'react-router';
 import CircularProgress from 'material-ui/CircularProgress';
 import {
 	requestSignupUser,
 	resetUserStatus
-} from '../actions'
+} from '../actions';
 import ErrorContent from '../components/ErrorContent'
 import {
 	Register,
 	RegisterSuccess
-} from '../components/Register'
+} from '../components/Register';
 
 
 class RegisterContainer extends Component {

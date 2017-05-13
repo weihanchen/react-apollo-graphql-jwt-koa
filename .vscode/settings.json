@@ -1,0 +1,7 @@
+// 將您的設定放入此檔案中以覆寫預設值和使用者設定。
+{
+   "workbench.experimental.colorCustomizations": {
+      "statusBar.background": "#1A1A1A",
+      "statusBar.noFolderBackground": "#0A0A0D"
+   }
+}
