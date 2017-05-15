@@ -8,9 +8,6 @@ import {
 import {
 	bindActionCreators
 } from 'redux';
-import {
-	hashHistory
-} from 'react-router';
 import CircularProgress from 'material-ui/CircularProgress';
 import {
 	requestSignupUser,
