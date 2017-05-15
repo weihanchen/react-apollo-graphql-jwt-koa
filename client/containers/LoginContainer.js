@@ -6,8 +6,9 @@ import {
 	connect
 } from 'react-redux';
 import {
-	hashHistory
-} from 'react-router';
+	hashHistory,
+   browserHistory
+} from 'react-router-dom';
 import {
 	bindActionCreators
 } from 'redux';
@@ -29,7 +30,7 @@ class LoginContainer extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		const status = nextProps.login.status
-		if (status === 'success') hashHistory.push('/profile')
+		if (status === 'success') nextProps.history.push('/profile')
 	}
 
 	handleLogin(username, password) {

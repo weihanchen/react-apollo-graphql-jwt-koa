@@ -5,6 +5,8 @@ import {
 import {
   HashRouter as Router
 } from 'react-router-dom';
+import createBrowserHistory from 'history/createBrowserHistory'
+import 'rxjs';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import ApolloClient, { createNetworkInterface } from 'apollo-client';
@@ -36,11 +38,11 @@ const client = new ApolloClient({
    networkInterface
 });
 const store = configureStore(initialState, client);
-
+const history = createBrowserHistory();
 
 render(
    <ApolloProvider client={client} store={store}>
-      <Router>
+      <Router history={history}>
         {routes}
       </Router>
    </ApolloProvider>,
