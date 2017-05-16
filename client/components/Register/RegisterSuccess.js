@@ -4,7 +4,7 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	Link
-} from 'react-router'
+} from 'react-router-dom';
 
 
 class RegisterSuccess extends Component {

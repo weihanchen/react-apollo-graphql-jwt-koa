@@ -19,24 +19,26 @@ const userLogin = (action$) => action$.ofType(REQUEST_LOGIN)
       .then(userInfo => {
          const token = userInfo.token;
          localStorage.setItem('token', token);
-         return ({type: REQUEST_LOGIN_SUCCESS, token});
+         return ({ type: REQUEST_LOGIN_SUCCESS, token });
       }))
-      .catch(error => Observable.of({
-         type: REQUEST_LOGIN_FAILD,
-         error
-      }));
+   .catch(error => Observable.of({
+      type: REQUEST_LOGIN_FAILD,
+      error
+   }));
 
 const userSignup = (action$) => action$.ofType(REQUEST_SIGNUP_USER)
-   .mergeMap(action => authService.requestSignupUser(action.displayName, action.password, action.username))
+   .mergeMap(action => userService.requestSignupUser(action.displayName, action.password, action.username)
       .then(() => ({
          type: REQUEST_SIGNUP_USER_SUCCESS,
          displayName: action.displayName,
-			username: action.username
-      }).catch(error => Observable.of({
-         type: REQUEST_FAILD,
-         error
+         username: action.username
       })))
-      
+   .catch(error => Observable.of({
+      type: REQUEST_FAILD,
+      error
+   }));
+
+
 export {
    userLogin,
    userSignup

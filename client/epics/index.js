@@ -1,6 +1,7 @@
 import { combineEpics } from 'redux-observable';
-import { userLogin } from './user';
+import { userLogin, userSignup } from './user';
 
 export default combineEpics(
-    userLogin
+    userLogin,
+    userSignup
 );
