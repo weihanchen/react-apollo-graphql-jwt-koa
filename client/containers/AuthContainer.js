@@ -16,7 +16,7 @@ import LinearProgress from 'material-ui/LinearProgress';
 import {
 	requestAuthentication
 } from '../actions';
-import USER_QUERY from '../graphql/UserQuery.graphql';
+import CURRENT_USER_QUERY from '../graphql/UserQuery.graphql';
 
 class AuthContainer extends Component {
 
@@ -62,13 +62,12 @@ AuthContainer.propTypes = {
 	requestAuthentication: PropTypes.func
 }
 
-const AuthWithQuery = graphql(USER_QUERY, {
+const AuthWithQuery = graphql(CURRENT_USER_QUERY, {
    options: {
       variables: {
-         id: 'userid'
       }
    },
-   name: 'getUser',
+   name: 'getCurrentUser',
    props: ({
      ownProps
 
