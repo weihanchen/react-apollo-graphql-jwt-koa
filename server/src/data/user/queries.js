@@ -1,24 +1,43 @@
 import {
-    GraphQLID,
-    GraphQLNonNull
+   GraphQLID,
+   GraphQLNonNull
 } from 'graphql';
-import {UserType, UserModel} from './models';
+import { UserType, UserModel } from './models';
+
+const Me = {
+   type: UserType,
+   description: 'Represent the type of a authorized user',
+   args: {
+
+   },
+   resolve(root, params) {
+      console.log(root);
+      return UserModel
+         .findById(params.id)
+         .exec();  // return JSON
+   }
+};
 
 const User = {
-    type: UserType,
-    args: {
-        id: {
-            name: 'id',
-            type: new GraphQLNonNull(GraphQLID)
-        }
-    },
-    resolve (root, params) {
-        return UserModel
-            .findById(params.id)
-            .exec();  // return JSON
-    }
+   type: UserType,
+   description: 'Represent the type of a user by id',
+   args: {
+      id: {
+         name: 'id',
+         type: new GraphQLNonNull(GraphQLID)
+      }
+   },
+   resolve(root, params) {
+      return UserModel
+         .findById(params.id)
+         .exec();  // return JSON
+   }
 };
 
-export default {
-    User
+const queries = {
+   User,
+   Me
 };
+
+
+export default queries;

@@ -41,3 +41,13 @@ Use rest api to create account and get json web token by login.
     }
 }
 ```
+
+### Query current user
+```graphql
+{
+    Me {
+        username
+        displayName
+    }
+}
+```
