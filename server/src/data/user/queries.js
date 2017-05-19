@@ -10,10 +10,9 @@ const Me = {
    args: {
 
    },
-   resolve(root, params) {
-      console.log(root);
+   resolve(root, params, context) {
       return UserModel
-         .findById(params.id)
+         .findById(context.user.uid)
          .exec();  // return JSON
    }
 };
