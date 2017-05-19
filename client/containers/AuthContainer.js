@@ -11,19 +11,24 @@ import {
 } from 'redux';
 import {
 	hashHistory
-} from 'react-router';
+} from 'react-router-dom';
 import LinearProgress from 'material-ui/LinearProgress';
 import {
 	requestAuthentication
 } from '../actions';
-import CURRENT_USER_QUERY from '../graphql/UserQuery.graphql';
+import getCurrentUser from '../graphql/CurrentUserQuery.graphql';
 
 class AuthContainer extends Component {
 
 	componentDidMount() {
 		const token = localStorage.getItem('token')
 		if (!token) hashHistory.push('/login')
-		else this.props.requestAuthentication(token)
+		else {
+			this.props.getCurrentUser().then(user => {
+				console.log(user);
+			})
+			//this.props.requestAuthentication(token)
+		}
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -62,16 +67,12 @@ AuthContainer.propTypes = {
 	requestAuthentication: PropTypes.func
 }
 
-const AuthWithQuery = graphql(CURRENT_USER_QUERY, {
+const AuthWithQuery = graphql(getCurrentUser, {
    options: {
       variables: {
       }
    },
-   name: 'getCurrentUser',
-   props: ({
-     ownProps
-
-   })
+   name: 'getCurrentUser'
 })(AuthContainer);//high order component
 
 //todo ref: https://github.com/MacKentoch/react-redux-graphql-apollo-bootstrap-webpack-starter/blob/master/src/app/containers/home/Home.js

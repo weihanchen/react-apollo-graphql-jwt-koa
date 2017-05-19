@@ -1,4 +1,4 @@
-query getCurrentUser() {
+query getCurrentUser {
     Me {
         username
         displayName
