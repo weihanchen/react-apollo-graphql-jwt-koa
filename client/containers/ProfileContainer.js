@@ -36,13 +36,13 @@ class ProfileContainer extends Component {
 
 	componentDidMount() {
 		const token = localStorage.getItem('token')
-		if (!token) hashHistory.push('/login')
+		if (!token) this.props.history.push('/login')
 		else this.props.requestCurrentUser(token)
 	}
 
 	componentWillReceiveProps(nextProps) {
 		const logout_status = nextProps.logout.status
-		if (logout_status === 'success') hashHistory.push('/login')
+		if (logout_status === 'success') this.props.history.push('/login')
 	}
 
 	handleLogout() {

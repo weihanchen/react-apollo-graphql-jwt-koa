@@ -1,7 +1,8 @@
 import React from 'react'
 
 import {
-   Route
+   Route,
+   IndexRoute
 } from 'react-router-dom'
 
 //import components
@@ -18,6 +19,7 @@ import {
 
 const Routes = (
    <App>
+      <Route path='/' component={AuthContainer} />
       <Route path='/auth' component={AuthContainer} />
       <Route path='/login' component={LoginContainer} />
       <Route path='/profile' component={ProfileContainer} />

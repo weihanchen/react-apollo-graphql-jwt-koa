@@ -21,9 +21,11 @@ import getCurrentUser from '../graphql/CurrentUserQuery.graphql';
 class AuthContainer extends Component {
 
 	componentDidMount() {
-		const token = localStorage.getItem('token')
-		if (!token) hashHistory.push('/login')
+		const token = localStorage.getItem('token');
+		const { history } = this.props;
+		if (!token) history.push('/login')
 		else {
+         console.log(this.props);
 			this.props.getCurrentUser().then(user => {
 				console.log(user);
 			})
@@ -73,6 +75,7 @@ const AuthWithQuery = graphql(getCurrentUser, {
       }
    },
    name: 'getCurrentUser'
+  
 })(AuthContainer);//high order component
 
 //todo ref: https://github.com/MacKentoch/react-redux-graphql-apollo-bootstrap-webpack-starter/blob/master/src/app/containers/home/Home.js
