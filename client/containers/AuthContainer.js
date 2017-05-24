@@ -25,7 +25,6 @@ class AuthContainer extends Component {
 		const { history } = this.props;
 		if (!token) history.push('/login')
 		else {
-         console.log(this.props);
 			this.props.getCurrentUser().then(user => {
 				console.log(user);
 			})
