@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 import {
 	connect
 } from 'react-redux';
-import { graphql } from 'react-apollo';
+import { graphql, withApollo } from 'react-apollo';
+import ApolloClient from 'apollo-client';
 import {
 	bindActionCreators
 } from 'redux';
@@ -25,8 +26,8 @@ class AuthContainer extends Component {
 		const { history } = this.props;
 		if (!token) history.push('/login')
 		else {
-			this.props.getCurrentUser().then(user => {
-				console.log(user);
+			this.props.client.query({
+				query: getCurrentUser
 			})
 			//this.props.requestAuthentication(token)
 		}
@@ -65,17 +66,23 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 AuthContainer.propTypes = {
-	requestAuthentication: PropTypes.func
+	requestAuthentication: PropTypes.func,
+	client: PropTypes.instanceOf(ApolloClient).isRequired
 }
 
-const AuthWithQuery = graphql(getCurrentUser, {
-   options: {
-      variables: {
-      }
-   },
-   name: 'getCurrentUser'
+const AuthWithApollo = withApollo(AuthContainer);
+
+// const AuthWithQuery = graphql(getCurrentUser, {
+//    options: {
+//       variables: {
+//       }
+//    },
+//    name: 'getCurrentUser',
+//    props: ({data}) => {
+// 	   console.log(data);
+//    }
   
-})(AuthContainer);//high order component
+// })(AuthContainer);//high order component
 
 //todo ref: https://github.com/MacKentoch/react-redux-graphql-apollo-bootstrap-webpack-starter/blob/master/src/app/containers/home/Home.js
-export default connect(mapStateToProps, mapDispatchToProps)(AuthWithQuery);
+export default connect(mapStateToProps, mapDispatchToProps)(AuthWithApollo);
