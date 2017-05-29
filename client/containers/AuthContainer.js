@@ -10,12 +10,11 @@ import ApolloClient from 'apollo-client';
 import {
 	bindActionCreators
 } from 'redux';
-import {
-	hashHistory
-} from 'react-router-dom';
 import LinearProgress from 'material-ui/LinearProgress';
 import {
-	requestAuthentication
+	requestAuthentication,
+	requestAuthenticationFaild,
+	requestAuthenticationSuccess
 } from '../actions';
 import getCurrentUser from '../graphql/CurrentUserQuery.graphql';
 
@@ -26,24 +25,31 @@ class AuthContainer extends Component {
 		const { history } = this.props;
 		if (!token) history.push('/login')
 		else {
+			this.props.requestAuthentication();
 			this.props.client.query({
 				query: getCurrentUser
 			})
-			//this.props.requestAuthentication(token)
+			.then(result => this.props.requestAuthenticationSuccess(result.data.Me))
+			.catch(error => {
+                console.log(error);
+                this.props.requestAuthenticationFaild(error)
+            });
 		}
 	}
 
 	componentWillReceiveProps(nextProps) {
-		const status = nextProps.authentication.status
+		const nextStatus = nextProps.authentication.status
+		const { authentication, history } = this.props;
+		const currentStatus = authentication.status;
 		const statusFunction = {
 			'success': function() {
-				hashHistory.push('/profile')
+				history.push('/profile')
 			},
 			'error': function() {
-				hashHistory.push('/login')
+				history.push('/login')
 			}
 		}
-		if (statusFunction.hasOwnProperty(status)) statusFunction[status]()
+		if (currentStatus != nextStatus && statusFunction.hasOwnProperty(nextStatus)) statusFunction[nextStatus]()
 	}
 
 	render() {
@@ -61,7 +67,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators({
-		requestAuthentication
+		requestAuthentication,
+		requestAuthenticationFaild,
+		requestAuthenticationSuccess
 	}, dispatch)
 }
 
@@ -71,18 +79,6 @@ AuthContainer.propTypes = {
 }
 
 const AuthWithApollo = withApollo(AuthContainer);
-
-// const AuthWithQuery = graphql(getCurrentUser, {
-//    options: {
-//       variables: {
-//       }
-//    },
-//    name: 'getCurrentUser',
-//    props: ({data}) => {
-// 	   console.log(data);
-//    }
-  
-// })(AuthContainer);//high order component
 
 //todo ref: https://github.com/MacKentoch/react-redux-graphql-apollo-bootstrap-webpack-starter/blob/master/src/app/containers/home/Home.js
 export default connect(mapStateToProps, mapDispatchToProps)(AuthWithApollo);

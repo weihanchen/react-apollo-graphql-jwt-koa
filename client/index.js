@@ -29,7 +29,8 @@ networkInterface.use([{
 
       // get the authentication token from local storage if it exists
       const token = localStorage.getItem('token');
-      if(token) req.options.headers.authorization = token ? `Bearer ${token}` : null;
+      if(token) req.options.headers.authorization = token ? `${token}` : null;
+      
       next();
    },
 }]);
@@ -42,7 +43,7 @@ const history = createBrowserHistory();
 
 render(
    <ApolloProvider client={client} store={store}>
-      <Router history={history}>
+      <Router>
         {routes}
       </Router>
    </ApolloProvider>,
