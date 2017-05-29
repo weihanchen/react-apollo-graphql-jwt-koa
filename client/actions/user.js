@@ -1,16 +1,21 @@
 export const REQUEST_CURRENTUSER = 'REQUEST_CURRENTUSER'
 export const REQUEST_CURRENTUSER_SUCCESS = 'REQUEST_CURRENTUSER_SUCCESS'
-export const REQUEST_FAILD = 'REQUEST_FAILD'
 export const REQUEST_SIGNUP_USER = 'REQUEST_SIGNUP_USER'
 export const REQUEST_SIGNUP_USER_SUCCESS = 'REQUEST_SIGNUP_USER_SUCCESS'
 export const REQUEST_UPDATEUSER = 'REQUEST_UPDATEUSER'
 export const REQUEST_UPDATEUSER_SUCCESS = 'REQUEST_UPDATEUSER_SUCCESS'
 export const RESET_USER_STATUS = 'RESET_USER_STATUS'
 
-export function requestCurrentUser(token) {
+export function requestCurrentUser() {
 	return {
-		type: REQUEST_CURRENTUSER,
-		token
+		type: REQUEST_CURRENTUSER
+	}
+}
+
+export function requestCurrentUserSuccess(user) {
+	return {
+		type: REQUEST_CURRENTUSER_SUCCESS,
+		user
 	}
 }
 

@@ -1,7 +1,7 @@
 # react-apollo-graphql-jwt-koa
 Backend api with koa, mongo, jwt, apollo, graphql
 
-Frontend with react, redux, redux-observable, apollo, graphql, nextjs
+Frontend with react, redux, redux-observable, apollo, graphql,
 
 Refactor from [user-authentication-nodejs](https://github.com/weihanchen/user-authentication-nodejs)
 ## Requirement
@@ -17,7 +17,6 @@ Refactor from [user-authentication-nodejs](https://github.com/weihanchen/user-au
 - [Redux](https://github.com/reactjs/react-redux)
 - [Redux-observable](https://github.com/redux-observable/redux-observable)
 - [Graphql](http://graphql.org/learn/)
-- [Next](https://github.com/zeit/next.js/)
 
 ## System Environment Variables
 - `PORT`

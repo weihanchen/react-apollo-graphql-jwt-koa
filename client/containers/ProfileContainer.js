@@ -4,19 +4,20 @@ import React, {
 import PropTypes from 'prop-types';
 import {
 	Link
-} from 'react-router';
+} from 'react-router-dom';
 import {
 	connect
 } from 'react-redux';
 import {
 	bindActionCreators
 } from 'redux';
-import {
-	hashHistory
-} from 'react-router';
+import { graphql, withApollo } from 'react-apollo';
+import ApolloClient from 'apollo-client';
 import CircularProgress from 'material-ui/CircularProgress';
 import {
 	requestCurrentUser,
+   requestCurrentUserSuccess,
+   requestFaild,
 	requestLogout,
 	requestUpdateUser,
 	resetLogoutStatus,
@@ -24,20 +25,30 @@ import {
 } from '../actions';
 import ErrorContent from '../components/ErrorContent';
 import Profile from '../components/Profile';
+import getCurrentUser from '../graphql/CurrentUserQuery.graphql';
 
 
 class ProfileContainer extends Component {
 
 	constructor(props) {
-		super(props)
-		this.props.resetLogoutStatus()
-		this.props.resetUserStatus()
+		super(props);
+		this.props.resetLogoutStatus();
+		this.props.resetUserStatus();
 	}
 
 	componentDidMount() {
-		const token = localStorage.getItem('token')
-		if (!token) this.props.history.push('/login')
-		else this.props.requestCurrentUser(token)
+		const token = localStorage.getItem('token');
+		if (!token) this.props.history.push('/login');
+		else {
+			this.props.requestCurrentUser();
+			this.props.client.query({
+				query: getCurrentUser
+			})
+			.then(result => this.props.requestCurrentUserSuccess(result.data.Me))
+			.catch(error => {
+                this.props.requestFaild(error)
+            });
+		}
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -101,6 +112,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators({
 		requestCurrentUser,
+      requestCurrentUserSuccess,
+      requestFaild,
 		requestLogout,
 		requestUpdateUser,
 		resetLogoutStatus,
@@ -109,12 +122,13 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 ProfileContainer.propTypes = {
+   client: PropTypes.instanceOf(ApolloClient).isRequired,
 	requestCurrentUser: PropTypes.func,
-	requestLogout: PropTypes.func,
-	requestUpdateUser: PropTypes.func,
-	resetLogoutStatus: PropTypes.func,
-	resetUserStatus: PropTypes.func,
+   requestCurrentUserSuccess: PropTypes.func,
+   requestFaild: PropTypes.func,
 	user: PropTypes.object
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer)
+const ProfileWithApollo = withApollo(ProfileContainer);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileWithApollo)

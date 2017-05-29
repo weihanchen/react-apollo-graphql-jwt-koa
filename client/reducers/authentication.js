@@ -14,20 +14,17 @@ export default function authentication(state = {
 				status: 'loading',
 				error: null
 			})
-			break
 		case REQUEST_AUTHENTICATION_FAILD:
 			return Object.assign({}, state, {
 				status: 'error',
 				error: action.error
 			})
-			break
 		case REQUEST_AUTHENTICATION_SUCCESS:
 			return Object.assign({}, state, {
 				status: 'success',
 				user: action.user
 			})
 
-			break
 		default:
 			return state
 	}

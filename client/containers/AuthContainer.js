@@ -5,16 +5,17 @@ import PropTypes from 'prop-types';
 import {
 	connect
 } from 'react-redux';
-import { graphql, withApollo } from 'react-apollo';
-import ApolloClient from 'apollo-client';
 import {
 	bindActionCreators
 } from 'redux';
+import { graphql, withApollo } from 'react-apollo';
+import ApolloClient from 'apollo-client';
+
 import LinearProgress from 'material-ui/LinearProgress';
 import {
 	requestAuthentication,
-	requestAuthenticationFaild,
-	requestAuthenticationSuccess
+	requestAuthenticationSuccess,
+	requestFaild
 } from '../actions';
 import getCurrentUser from '../graphql/CurrentUserQuery.graphql';
 
@@ -31,8 +32,7 @@ class AuthContainer extends Component {
 			})
 			.then(result => this.props.requestAuthenticationSuccess(result.data.Me))
 			.catch(error => {
-                console.log(error);
-                this.props.requestAuthenticationFaild(error)
+                this.props.requestFaild(error)
             });
 		}
 	}
@@ -43,7 +43,7 @@ class AuthContainer extends Component {
 		const currentStatus = authentication.status;
 		const statusFunction = {
 			'success': function() {
-				history.push('/profile')
+				history.replace('/profile')
 			},
 			'error': function() {
 				history.push('/login')
@@ -68,7 +68,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return bindActionCreators({
 		requestAuthentication,
-		requestAuthenticationFaild,
+		requestFaild,
 		requestAuthenticationSuccess
 	}, dispatch)
 }
