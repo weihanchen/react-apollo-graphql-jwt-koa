@@ -17,8 +17,9 @@ const login = async (ctx, next) => {
          const isValid = user.validPassword(password);
          if (isValid) {
             const expires = moment().add(1, 'days').valueOf();
+            console.log(user);
             const token = jwt.sign({
-               iss: user.id,
+               iss: user._id,
                exp: expires
             }, config.jwt.secret);
             ctx.body = {

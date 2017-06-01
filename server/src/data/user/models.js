@@ -10,6 +10,11 @@ import {
 const Schema = mongoose.Schema;
 // set up a mongoose model
 const userSchema = new Schema({
+    id: {
+        type: String,
+        unique: true,
+        required: true
+    },
     username: {
         type: String,
         unique: true,
@@ -53,6 +58,7 @@ export const UserType = new GraphQLObjectType({
       },
       displayName: {
          type: GraphQLString
-      }
+      },
+
    }
 });
