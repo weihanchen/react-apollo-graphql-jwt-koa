@@ -26,7 +26,7 @@ export default function user(state = initState, action) {
 				status: 'success',
 				displayName: action.user.displayName,
 				role: action.user.role,
-				uid: action.user.uid,
+				uid: action.user._id,
 				username: action.user.username
 			})
 		case REQUEST_FAILD:
