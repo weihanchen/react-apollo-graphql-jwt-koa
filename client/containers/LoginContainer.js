@@ -30,7 +30,6 @@ class LoginContainer extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		const status = nextProps.login.status
-		console.log(status)
 		if (status === 'success') nextProps.history.push('/profile')
 	}
 
