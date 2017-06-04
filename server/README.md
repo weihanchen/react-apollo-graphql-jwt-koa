@@ -51,3 +51,12 @@ Use rest api to create account and get json web token by login.
     }
 }
 ```
+
+### Logout
+```graphql
+mutation Mutation {
+ logout{
+  token
+ }
+}
+```

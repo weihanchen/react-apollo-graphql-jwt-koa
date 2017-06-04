@@ -7,7 +7,8 @@ export default (router) => {
       return {
          schema,
          context: {
-            user: ctx.req.user
+            user: ctx.req.user,
+            headers: ctx.req.headers
          }
       };
    }));

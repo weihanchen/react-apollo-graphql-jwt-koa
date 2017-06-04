@@ -2,7 +2,7 @@
 import moment from 'moment';
 import jwt from 'jsonwebtoken';
 import config from '../../../config';
-import { UserModel } from '../../data/user/models';
+import { UserModel } from '../../data/user/model';
 import { authJwt } from '../../auth';
 import errorBuilder from '../../services/error';
 

@@ -2,7 +2,7 @@ import {
    GraphQLID,
    GraphQLNonNull
 } from 'graphql';
-import { UserType, UserModel } from './models';
+import { UserType, UserModel } from './model';
 
 const Me = {
    type: UserType,

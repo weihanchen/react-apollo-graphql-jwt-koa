@@ -5,7 +5,6 @@ const logout = {
    description: 'Trigger logout action',
    args: {},
    resolve(root, params, context) {
-      console.log('logout');
       const token = context.headers.authorization;
       const expireAt = context.user.expireAt;
       const expireToken = new ExpireTokenModel({

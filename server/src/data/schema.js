@@ -14,7 +14,7 @@ export default new GraphQLSchema({
         fields: Object.assign({}, userQueries) // connect fields from queries.js
     }),
     mutation: new GraphQLObjectType({
-        name: 'Mutation',
+        name: 'User',
         fields: Object.assign({}, UserMutations)
     })
 });
