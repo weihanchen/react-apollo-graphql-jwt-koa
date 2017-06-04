@@ -46,7 +46,7 @@ class AuthContainer extends Component {
 				history.replace('/profile')
 			},
 			'error': function() {
-				history.push('/login')
+				history.replace('/login')
 			}
 		}
 		if (currentStatus != nextStatus && statusFunction.hasOwnProperty(nextStatus)) statusFunction[nextStatus]()

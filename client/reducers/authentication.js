@@ -1,6 +1,6 @@
 import {
 	REQUEST_AUTHENTICATION,
-	REQUEST_AUTHENTICATION_FAILD,
+	REQUEST_FAILD,
 	REQUEST_AUTHENTICATION_SUCCESS
 } from '../actions'
 
@@ -14,7 +14,7 @@ export default function authentication(state = {
 				status: 'loading',
 				error: null
 			})
-		case REQUEST_AUTHENTICATION_FAILD:
+		case REQUEST_FAILD:
 			return Object.assign({}, state, {
 				status: 'error',
 				error: action.error
