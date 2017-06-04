@@ -76,7 +76,6 @@ const register = async (ctx, next) => {
 };
 
 export default (router) => {
-   // router.get('/users/me', authJwt(), me);
    router.post('/users', register);
    router.post('/users/login', login);
 };
