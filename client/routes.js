@@ -19,7 +19,7 @@ import {
 
 const Routes = (
    <App>
-      <Route path='/' component={AuthContainer} />
+      <Route path="/" exact component={AuthContainer} />
       <Route path='/auth' component={AuthContainer} />
       <Route path='/login' component={LoginContainer} />
       <Route path='/profile' component={ProfileContainer} />

@@ -43,7 +43,7 @@ const history = createBrowserHistory();
 
 render(
    <ApolloProvider client={client} store={store}>
-      <Router>
+      <Router history={history}>
         {routes}
       </Router>
    </ApolloProvider>,
