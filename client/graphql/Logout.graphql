@@ -1,0 +1,5 @@
+mutation Mutation {
+ logout{
+  token
+ }
+}

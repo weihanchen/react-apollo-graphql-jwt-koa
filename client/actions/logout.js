@@ -3,10 +3,9 @@ export const REQUEST_LOGOUT_FAILD = 'REQUEST_LOGOUT_FAILD'
 export const REQUEST_LOGOUT_SUCCESS = 'REQUEST_LOGOUT_SUCCESS'
 export const RESET_LOGOUT_STATUS = 'RESET_LOGOUT_STATUS'
 
-export function requestLogout(token) {
+export function requestLogout() {
 	return {
-		type: REQUEST_LOGOUT,
-		token
+		type: REQUEST_LOGOUT
 	}
 }
 

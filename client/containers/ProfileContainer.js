@@ -18,7 +18,7 @@ import {
   requestCurrentUser,
   requestCurrentUserSuccess,
   requestFaild,
-  requestLogout,
+  requestLogoutSuccess,
   requestUpdateUser,
   resetLogoutStatus,
   resetUserStatus
@@ -26,6 +26,7 @@ import {
 import ErrorContent from '../components/ErrorContent';
 import Profile from '../components/Profile';
 import getCurrentUser from '../graphql/CurrentUserQuery.graphql';
+import logoutMutation from '../graphql/Logout.graphql';
 
 
 class ProfileContainer extends Component {
@@ -57,9 +58,16 @@ class ProfileContainer extends Component {
     if (logout_status === 'success') this.props.history.push('/login');
   }
 
-  handleLogout() {
-    const token = localStorage.getItem('token');
-    this.props.requestLogout(token);
+  async handleLogout() {
+    try {
+      await this.props.client.mutate({
+        mutation: logoutMutation
+      });
+      localStorage.removeItem('token');
+      this.props.requestLogoutSuccess();
+    } catch (error) {
+      this.props.requestFaild(error);
+    }
   }
 
 
@@ -115,7 +123,7 @@ const mapDispatchToProps = (dispatch) => {
     requestCurrentUser,
     requestCurrentUserSuccess,
     requestFaild,
-    requestLogout,
+    requestLogoutSuccess,
     requestUpdateUser,
     resetLogoutStatus,
     resetUserStatus
@@ -127,6 +135,7 @@ ProfileContainer.propTypes = {
   requestCurrentUser: PropTypes.func,
   requestCurrentUserSuccess: PropTypes.func,
   requestFaild: PropTypes.func,
+  requestLogoutSuccess: PropTypes.func,
   user: PropTypes.object
 }
 

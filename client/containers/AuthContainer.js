@@ -31,7 +31,7 @@ class AuthContainer extends Component {
             const currentUser = await this.props.client.query({
                query: getCurrentUser
             });
-            this.props.requestAuthenticationSuccess(result.data.Me);
+            this.props.requestAuthenticationSuccess(currentUser.data.Me);
          }
       } catch (error) {
           this.props.requestFaild(error);
