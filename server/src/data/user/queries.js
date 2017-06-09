@@ -4,7 +4,7 @@ import {
 } from 'graphql';
 import { UserType, UserModel } from './model';
 
-const Me = {
+const me = {
    type: UserType,
    description: 'Represent the type of a authorized user',
    args: {
@@ -17,7 +17,7 @@ const Me = {
    }
 };
 
-const User = {
+const user = {
    type: UserType,
    description: 'Represent the type of a user by id',
    args: {
@@ -34,8 +34,8 @@ const User = {
 };
 
 const queries = {
-   User,
-   Me
+   user,
+   me
 };
 
 

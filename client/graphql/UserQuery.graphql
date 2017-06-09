@@ -1,5 +1,5 @@
 query getUser($id: Int!) {
-   User(id: $id) {
+   user(id: $id) {
         username
         displayName
     }

@@ -35,7 +35,7 @@ Use rest api to create account and get json web token by login.
 ### Query user by id
 ```graphql
 {
-    User(id: "your user id") {
+    user(id: "your user id") {
         username
         displayName
     }
@@ -45,7 +45,7 @@ Use rest api to create account and get json web token by login.
 ### Query current user
 ```graphql
 {
-    Me {
+    me {
         username
         displayName
     }
@@ -55,7 +55,7 @@ Use rest api to create account and get json web token by login.
 ### Logout
 ```graphql
 mutation Mutation {
- Logout{
+ logout{
   token
  }
 }

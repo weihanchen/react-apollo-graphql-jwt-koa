@@ -1,6 +1,6 @@
 import { ExpireTokenType, ExpireTokenModel } from '../token/model';
 
-const Logout = {
+const logout = {
    type: ExpireTokenType,
    description: 'Trigger logout action',
    args: {},
@@ -16,7 +16,7 @@ const Logout = {
 };
 
 const mutations = {
-   Logout
+   logout
 };
 
 export default mutations;

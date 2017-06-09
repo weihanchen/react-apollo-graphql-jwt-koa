@@ -46,7 +46,7 @@ class ProfileContainer extends Component {
         const currentUser = await this.props.client.query({
           query: getCurrentUser
         });
-        this.props.requestCurrentUserSuccess(currentUser.data.Me);
+        this.props.requestCurrentUserSuccess(currentUser.data.me);
       }
     } catch (error) {
       this.props.requestFaild(error);
