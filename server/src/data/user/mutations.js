@@ -1,4 +1,9 @@
-import { ExpireTokenType, ExpireTokenModel } from '../token/model';
+import {
+   GraphQLID,
+   GraphQLNonNull,
+   GraphQLString
+} from 'graphql';
+import { ExpireTokenType, ExpireTokenModel, UserType, UserModel } from '../token/model';
 
 const logout = {
    type: ExpireTokenType,
@@ -15,8 +20,37 @@ const logout = {
    }
 };
 
+const updateUser = {
+   type: UserType,
+   description: 'Trigger update user action',
+   args: {
+      id: {
+         name: 'id',
+         type: new GraphQLNonNull(GraphQLID)
+      },
+      username: {
+         name: 'username',
+         type: new GraphQLNonNull(GraphQLString)
+      },
+      displayName: {
+         name: 'displayName',
+         type: new GraphQLNonNull(GraphQLString)
+      }
+   },
+   resolve(root, params) {
+      const { id, username, displayName } = params;
+      const updateBody = { id, username, displayName };
+      return UserModel.findOneAndUpdate(
+         { id },
+         { $set: updateBody},
+         { returnNewDocument: true }
+      ).exec();
+   }
+};
+
 const mutations = {
-   logout
+   logout,
+   updateUser
 };
 
 export default mutations;
