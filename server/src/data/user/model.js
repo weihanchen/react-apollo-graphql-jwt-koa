@@ -58,7 +58,6 @@ export const UserType = new GraphQLObjectType({
       },
       displayName: {
          type: GraphQLString
-      },
-
+      }
    }
 });

@@ -60,3 +60,13 @@ mutation Mutation {
  }
 }
 ```
+
+### Update user
+```graphql
+mutation Mutation {
+ updateUser(id: ${your id}, username: ${your username}, displayName: ${your displayName}){
+  username,
+  displayName
+ }
+}
+```

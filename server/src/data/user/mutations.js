@@ -3,7 +3,8 @@ import {
    GraphQLNonNull,
    GraphQLString
 } from 'graphql';
-import { ExpireTokenType, ExpireTokenModel, UserType, UserModel } from '../token/model';
+import { ExpireTokenType, ExpireTokenModel } from '../token/model';
+import {UserType, UserModel} from './model';
 
 const logout = {
    type: ExpireTokenType,
@@ -41,7 +42,7 @@ const updateUser = {
       const { id, username, displayName } = params;
       const updateBody = { id, username, displayName };
       return UserModel.findOneAndUpdate(
-         { id },
+         { _id: id },
          { $set: updateBody},
          { returnNewDocument: true }
       ).exec();
