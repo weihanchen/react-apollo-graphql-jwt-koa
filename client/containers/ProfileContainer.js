@@ -27,6 +27,7 @@ import ErrorContent from '../components/ErrorContent';
 import Profile from '../components/Profile';
 import getCurrentUser from '../graphql/CurrentUserQuery.graphql';
 import logoutMutation from '../graphql/Logout.graphql';
+import updateUserMutation from '../graphql/UpdateUser.graphql';
 
 
 class ProfileContainer extends Component {
@@ -71,15 +72,15 @@ class ProfileContainer extends Component {
   }
 
 
-  handleUpdateUser(displayName, uid, username) {
-    const token = localStorage.getItem('token')
-    const {
-			user
-		} = this.props
-    user.displayName = displayName
-    user.uid = uid
-    user.username = username
-    this.props.requestUpdateUser(token, user)
+  async handleUpdateUser(displayName, uid, username) {
+    try {
+      await this.props.client.mutate({
+        mutation: updateUserMutation
+      });
+
+    } catch (error) {
+      this.props.requestFaild(error);
+    }
   }
 
   render() {
