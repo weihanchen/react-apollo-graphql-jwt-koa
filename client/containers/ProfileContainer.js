@@ -75,9 +75,10 @@ class ProfileContainer extends Component {
   async handleUpdateUser(displayName, uid, username) {
     try {
       await this.props.client.mutate({
-        mutation: updateUserMutation
+        mutation: updateUserMutation,
+        variables: {displayName, id: uid, username}
       });
-
+      this.props.requestUpdateUserSuccess(displayName, username);
     } catch (error) {
       this.props.requestFaild(error);
     }

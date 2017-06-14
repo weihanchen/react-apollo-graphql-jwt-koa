@@ -28,11 +28,11 @@ export function requestSignupUser(displayName, password, username) {
 	}
 }
 
-export function requestUpdateUser(token, user) {
+export function requestUpdateUserSuccess(displayName, username) {
 	return {
-		type: REQUEST_UPDATEUSER,
-		token,
-		user
+		type: REQUEST_UPDATEUSER_SUCCESS,
+		displayName,
+		username
 	}
 }
 
