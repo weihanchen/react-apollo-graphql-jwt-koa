@@ -1,6 +1,6 @@
 'use strict';
 
-import config from '../../../config';
+import config from '../../config';
 import errorBuilder from '../../services/error';
 import { Strategy as JWTStrategy, ExtractJwt } from 'passport-jwt';
 

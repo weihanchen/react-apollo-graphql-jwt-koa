@@ -6,5 +6,4 @@ services:
 before_script:
 - sleep 15
 - mongo user_auth_demo --eval 'db.addUser("travis", "test");'
-- cd server
-- npm install
+- npm install:dependence
