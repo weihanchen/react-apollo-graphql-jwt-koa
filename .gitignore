@@ -2,6 +2,8 @@ server/node_modules
 server/coverage
 server/npm-debug.log
 server/yarn.lock
+server/package-lock.json
 client/node_modules
 client/yarn.lock
+client/package-lock.json
 npm-debug.log

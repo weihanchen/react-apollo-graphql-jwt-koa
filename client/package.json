@@ -3,9 +3,7 @@
   "version": "0.1.0",
   "author": "weihanchen",
   "license": "MIT",
-  "devDependencies": {
-
-  },
+  "devDependencies": {},
   "dependencies": {
     "apollo-client": "^1.2.2",
     "babel-core": "^6.24.1",
@@ -42,6 +40,6 @@
     "webpack-dev-server": "^2.4.5"
   },
   "scripts": {
-     "dev": "webpack-dev-server --inline --devtool eval --progress --colors --hot --content-base ../public"
+    "dev": "webpack-dev-server --inline --devtool eval --progress --colors --hot --content-base ../public"
   }
 }
