@@ -28,11 +28,8 @@ Refactor from [user-authentication-nodejs](https://github.com/weihanchen/user-au
 git clone https://github.com/weihanchen/react-apollo-graphql-jwt-koa.git
 ```
 ## Install dependence packages
-```
-$ cd server 
-$ npm install
-$ cd ../client
-$ npm install
+```sh
+$ npm run install:dependence
 ```
 
 ## Step
@@ -50,6 +47,7 @@ edit `server/config/database.js` database connection and jwt secret default usin
 ```sh
 $ npm run build:client
 $ npm run build:server
-$ npm run start:client
-$ npm run start:server
+$ npm run start
 ```
+
+### [API Documents](./server/README.md)

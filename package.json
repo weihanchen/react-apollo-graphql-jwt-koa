@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "development",
   "scripts": {
+    "install:dependence": "cd server && npm install && cd ../client && npm install",
     "build:client": "cd client && npm run build",
     "build:server": "cd server && npm run build",
     "dev:client": "cd client && npm run dev",
     "dev:server": "cd server && npm run dev",
-    "start:client": "cd client && npm start",
-    "start:server": "cd server && npm start"
+    "start": "cd server && npm start"
   },
   "keywords": [
     "react",
