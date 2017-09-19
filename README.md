@@ -37,6 +37,19 @@ $ npm install
 
 ## Step
 ### General config
-- edit server/config/database.js or system variable for MONGO_CONNECTION、SECRET_KEY - database connection and jwt secret
+edit `server/config/database.js` database connection and jwt secret default using [system variables]($system-environment-variables)
 
-### Pending
+>1. srcret - jwt auth secret
+>2. database - database connection
+
+### Start with development
+* server development: `npm run dev:server`, default port `3000`
+* client development: `npm run dev:client`, default port `8080`
+
+### Production build and run
+```sh
+$ npm run build:client
+$ npm run build:server
+$ npm run start:client
+$ npm run start:server
+```
