@@ -5,6 +5,7 @@
   "author": "weihanchen",
   "scripts": {
     "build": "babel src -d dist",
+    "lint": "eslint ./src",
     "start": "node dist/server.js",
     "dev": "nodemon ./src/server.js --exec babel-node --presets es2015,stage-3"
   },

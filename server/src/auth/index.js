@@ -33,8 +33,7 @@ const vertifyToken = async (ctx, next) => {
       ctx.status = error.status || 500;
       ctx.body = error;
    }
-
-}
+};
 
 export default {
    authInitialize,

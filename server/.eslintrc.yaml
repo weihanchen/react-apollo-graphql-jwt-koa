@@ -14,6 +14,9 @@ globals:
   __testBase: true
 parserOptions:
   sourceType: module
+  ecmaVersion: 2017
+  ecmaFeatures:
+    experimentalObjectRestSpread: true
 rules:
   linebreak-style:
   - error
@@ -27,4 +30,3 @@ rules:
   arrow-body-style:
   - warn
   - as-needed
-  - requireReturnForObjectLiteral: true

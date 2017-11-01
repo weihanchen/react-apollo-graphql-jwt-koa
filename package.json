@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "development",
   "scripts": {
-    "install:dependence": "cd server && npm install && cd ../client && npm install",
     "build:client": "cd client && npm run build",
     "build:server": "cd server && npm run build",
     "dev:client": "cd client && npm run dev",
     "dev:server": "cd server && npm run dev",
+    "install:dependence": "cd server && npm install && cd ../client && npm install",
+    "lint:server": "cd server && npm run lint",
     "start": "cd server && npm start"
   },
   "keywords": [

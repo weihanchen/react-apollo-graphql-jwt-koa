@@ -3,7 +3,6 @@ import moment from 'moment';
 import jwt from 'jsonwebtoken';
 import config from '../../config';
 import { UserModel } from '../../data/user/model';
-import { authJwt } from '../../auth';
 import errorBuilder from '../../services/error';
 
 const login = async (ctx, next) => {
@@ -26,7 +25,7 @@ const login = async (ctx, next) => {
                success: true,
                uid: user.id,
                token: 'JWT ' + token
-            }
+            };
          } else {
             ctx.error = errorBuilder.badRequest('Wrong password.');
             await next();
@@ -38,21 +37,21 @@ const login = async (ctx, next) => {
    }
 };
 
-const me = async (ctx, next) => {
-   try {
-      const request = ctx.request
-      const user = await UserModel.findById(req.user.uid);
-      const respbody = {
-         uid: req.user.id,
-         username: user.username,
-         displayname: user.displayName
-      }
-      ctx.body = respbody;
-   } catch (error) {
-      ctx.error = errorBuilder.internalServerError(error);
-      await next();
-   }
-};
+// const me = async (ctx, next) => {
+//    try {
+//       const request = ctx.request;
+//       const user = await UserModel.findById(request.user.uid);
+//       const respbody = {
+//          uid: request.user.id,
+//          username: user.username,
+//          displayname: user.displayName
+//       };
+//       ctx.body = respbody;
+//    } catch (error) {
+//       ctx.error = errorBuilder.internalServerError(error);
+//       await next();
+//    }
+// };
 
 const register = async (ctx, next) => {
    const { username, displayName, password } = ctx.request.body;
