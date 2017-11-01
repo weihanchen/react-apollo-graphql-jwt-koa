@@ -35,7 +35,7 @@ $ npm run install:dependence
 
 ## Step
 ### General config
-edit `server/config/database.js` database connection and jwt secret default using [system variables]($system-environment-variables)
+edit `server/src/config/database.js` database connection and jwt secret default using [system variables]($system-environment-variables)
 
 >1. srcret - jwt auth secret
 >2. database - database connection

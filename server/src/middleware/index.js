@@ -9,7 +9,7 @@ import bodyParser from 'koa-bodyparser';
 
 export default function middleware() {
   return compose([
-    logger(),
+    convert(logger()),
     convert(cors()),
     convert(bodyParser())
   ]);

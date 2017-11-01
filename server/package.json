@@ -4,10 +4,10 @@
   "description": "Backend api with koa, mongo, jwt, apollo, graphql",
   "author": "weihanchen",
   "scripts": {
-    "build": "babel src -d dist",
+    "build": "babel src -d dist --presets es2015,stage-0",
     "lint": "eslint ./src",
     "start": "node dist/server.js",
-    "dev": "nodemon ./src/server.js --exec babel-node --presets es2015,stage-3"
+    "dev": "nodemon ./src/server.js --exec babel-node --presets es2015,stage-0"
   },
   "dependencies": {
     "bcrypt-nodejs": "^0.0.3",
@@ -17,7 +17,7 @@
     "import-dir": "^0.0.1",
     "jsonwebtoken": "^7.3.0",
     "kcors": "^1.3.2",
-    "koa": "^2.2.0",
+    "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-compose": "^4.0.0",
     "koa-logger": "^2.0.1",

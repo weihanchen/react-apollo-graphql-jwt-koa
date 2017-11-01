@@ -1,9 +1,13 @@
 language: node_js
 node_js:
-- 7.6.0
+- 8.4.0
 services:
 - mongodb
 before_script:
 - sleep 15
 - mongo user_auth_demo --eval 'db.addUser("travis", "test");'
-- npm install:dependence
+- npm run install:dependence
+script:
+- npm run lint:server
+- npm run build:client
+- npm run build:server

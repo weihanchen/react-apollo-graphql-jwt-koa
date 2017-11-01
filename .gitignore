@@ -9,3 +9,4 @@ client/yarn.lock
 client/package-lock.json
 npm-debug.log
 public
+.vscode
