@@ -1,13 +1,33 @@
 language: node_js
+
 node_js:
 - 8.4.0
+
 services:
 - mongodb
+
 before_script:
 - sleep 15
 - mongo user_auth_demo --eval 'db.addUser("travis", "test");'
 - npm run install:dependence
+
 script:
 - npm run lint:server
 - npm run build:client
 - npm run build:server
+
+branches:
+  only:
+    - master
+notification:
+  email:
+    - ${GITHUB_MAIL}
+  on_success: always
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: ${HEROKU_TOKEN}
+  app: react-apollo-graphql-jwt-koa
+  on:
+    repo: weihanchen/react-apollo-graphql-jwt-koa
