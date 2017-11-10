@@ -81,5 +81,5 @@ AuthContainer.propTypes = {
 
 const AuthWithApollo = withApollo(AuthContainer);
 
-//todo ref: https://github.com/MacKentoch/react-redux-graphql-apollo-bootstrap-webpack-starter/blob/master/src/app/containers/home/Home.js
+//TODO: ref: https://github.com/MacKentoch/react-redux-graphql-apollo-bootstrap-webpack-starter/blob/master/src/app/containers/home/Home.js
 export default connect(mapStateToProps, mapDispatchToProps)(AuthWithApollo);

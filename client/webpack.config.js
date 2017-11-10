@@ -19,7 +19,7 @@ module.exports = {
       loaders: [{
          test: /\.js[x]?$/,
          exclude: /(node_modules|bower_components)/,
-         loaders: ['babel-loader?presets[]=es2015,presets[]=react']
+         loaders: ['babel-loader?presets[]=es2015,presets[]=react,presets[]=stage-0']
       }, {
          test: /\.json$/,
          loader: 'json'

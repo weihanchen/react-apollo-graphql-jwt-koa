@@ -1,7 +1,5 @@
 import 'babel-polyfill';
 import koa from 'koa';
-import convert from 'koa-convert';
-import serve from 'koa-static-folder';
 import mongoose from 'mongoose';
 import config from './config';
 import middleware from './middleware';
@@ -16,7 +14,6 @@ const server = new koa(),
         ctx.body = ctx.error || ctx.response.message;
     };
 
-server.use(convert(serve('../public')));
 server.use(middleware());
 server.use(authInitialize());
 server.use(routes());
