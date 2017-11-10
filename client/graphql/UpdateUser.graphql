@@ -1,5 +1,5 @@
 mutation Mutation ($id: String!, $username: String!, $displayName: String!){
- updateUser(id : $id, usermame: $username , displayName: $displayName){
+ updateUser(id : $id, username: $username , displayName: $displayName){
   username,
   displayName
  }
